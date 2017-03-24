@@ -1,0 +1,8 @@
+.idea/
+project/
+spark-warehouse/
+src/main/java/
+src/main/resources/
+src/main/scala-2.10/
+src/main/scala-2.12/
+target/
