@@ -2,7 +2,7 @@ import java.io.File
 import java.sql.Timestamp
 
 import com.github.tototoshi.csv.CSVWriter
-import org.apache.spark.sql.{Dataset, Row, SparkSession}
+import org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.functions._
 
@@ -55,23 +55,8 @@ object Main extends App {
 
   count_of_users.show
 
-  write(count_of_users, "count_of_users.csv")
+  count_of_users.coalesce(1).write.mode(SaveMode.Overwrite).csv("count_of_users")
 
   spark.close()
-
-  def write(ds: Dataset[Row], filename: String): Unit = {
-
-    val f = new File(filename)
-    val writer = CSVWriter.open(f)
-
-    try {
-      val data = ds.foreach{ row =>
-        writer.writeRow(row.toSeq)
-      }
-    }
-    finally {
-      writer.close()
-    }
-  }
 }
 

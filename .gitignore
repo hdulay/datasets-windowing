@@ -6,3 +6,4 @@ src/main/resources/
 src/main/scala-2.10/
 src/main/scala-2.12/
 target/
+count_of_users
