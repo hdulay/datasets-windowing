@@ -1,15 +1,12 @@
-import java.io.File
-import java.sql.Timestamp
-
-import com.github.tototoshi.csv.CSVWriter
-import org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.functions._
+import org.apache.spark.sql.{SaveMode, SparkSession}
 
 case class Event(val timestamp: Int, val event_id: String, val advertiser_id: Int,
                  val user_id: String, val event_type: String)
+
 case class Impression(val published: Int, val advertiser_id: Int,
-                       val creative_id: Int, val user_id: String)
+                      val creative_id: Int, val user_id: String)
 
 /**
   * Created by hkdulay on 3/23/17.
